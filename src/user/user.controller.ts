@@ -14,13 +14,8 @@ import {UserDataDto} from './dto/userdatadto'
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post('/')
-  postHello( @Body(new ValidationPipe()) createCatDto: UserDataDto): string {
-    return this.userService.getHello();
-  }
-
-  @Put('/')
-  putHello(@Body() args): string {
-    return this.userService.getHello();
+  @Get('/ping')
+  postHello(): string {
+    return 'Hello from User'
   }
 }

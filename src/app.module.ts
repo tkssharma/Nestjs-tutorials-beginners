@@ -3,8 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import {UserModule} from './user/user.module'
 import { LoggerMiddleware } from './core/middleware/logger';
+import { MongooseModule } from '@nestjs/mongoose';
 @Module({
-  imports: [UserModule],
+  imports: [
+    MongooseModule.forRoot(process.env.MONGO_URI),
+    UserModule],
   controllers: [AppController],
   providers: [AppService],
 })
