@@ -20,7 +20,7 @@ export class AuthController {
       seller: user.seller,
     };
     const token = await this.authService.signPayload(payload);
-    return { user, token };
+    return { token };
   }
 
   @Post('register')
@@ -31,6 +31,6 @@ export class AuthController {
       seller: user.seller,
     };
     const token = await this.authService.signPayload(payload);
-    return { user, token };
+    return { token };
   }
 }

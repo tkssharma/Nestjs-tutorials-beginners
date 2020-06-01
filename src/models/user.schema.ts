@@ -3,13 +3,13 @@ import * as mongoose from 'mongoose';
 
 export const UserSchema = new mongoose.Schema({
   username: String,
-  seller: {
-    type: Boolean,
-    default: false,
-  },
   password: {
     type: String,
     select: false,
+  },
+  seller: {
+    type: Boolean,
+    default: false,
   },
   address: {
     addr1: String,
