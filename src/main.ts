@@ -7,7 +7,7 @@ import { LoggingInterceptor } from './shared/logging.interceptor';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   SwaggerModule.setup('api', app, createdocument(app));
-  app.useGlobalInterceptors(new LoggingInterceptor())
+  app.useGlobalInterceptors(new LoggingInterceptor());
   await app.listen(3000);
 }
 bootstrap();

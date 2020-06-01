@@ -18,7 +18,7 @@ import { UserService } from './user.service';
     {
       provide: APP_INTERCEPTOR,
       useClass: LoggingInterceptor,
-    },
+    }
   ],
   exports: [UserService],
 })
