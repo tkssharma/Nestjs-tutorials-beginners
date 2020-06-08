@@ -1,29 +1,54 @@
-import {Column, CreateDateColumn, Entity, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
+import * as bcrypt from 'bcryptjs';
+import { IsNotEmpty, Length } from 'class-validator';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  Unique,
+  UpdateDateColumn,
+} from 'typeorm';
+import Comment from './Comment';
+import Post from './Post';
 
-@Entity('User')
-export default class UserEntity{
+@Entity()
+@Unique(['username'])
+export class User {
+  @PrimaryGeneratedColumn()
+  public id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number;
+  @Column()
+  @Length(4, 20)
+  @IsNotEmpty()
+  public username: string;
 
-    @PrimaryColumn()
-    @Column()
-    name: string;
+  @Column({ select: false })
+  @Length(4, 100)
+  @IsNotEmpty()
+  public password: string;
 
-    @PrimaryColumn()
-    @Column({
-        unique: true,
-        nullable: false,
-    })
-    email: string;
+  @OneToMany(() => Post, post => post.user)
+  public posts: Post[]
 
-    @Column()
-    phone: string;
+  @OneToMany(() => Comment, comment => comment.user)
+  public comments: Comment[]
 
-    @CreateDateColumn()
-    createdAt;
+  @Column()
+  @CreateDateColumn()
+  public createdAt: Date;
 
-    @UpdateDateColumn()
-    updatedAt;
+  @Column()
+  @UpdateDateColumn()
+  public updatedAt: Date;
 
+  public hashPassword() {
+    this.password = bcrypt.hashSync(this.password, 8);
+  }
+
+  public checkIfUnencryptedPasswordIsValid(unencryptedPassword: string) {
+    return bcrypt.compareSync(unencryptedPassword, this.password);
+  }
 }
+
+export default User;

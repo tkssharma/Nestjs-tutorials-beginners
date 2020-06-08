@@ -1,10 +1,10 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import ContactEntity from '../entities/contact';
+import Post from '../entities/Post';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ContactEntity])
+    TypeOrmModule.forFeature([Post])
     ],
   controllers: [],
   providers: [],

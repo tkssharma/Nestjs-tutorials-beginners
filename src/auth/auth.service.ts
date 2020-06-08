@@ -3,6 +3,7 @@ import { sign } from 'jsonwebtoken';
 
 import { UserService } from '../shared/user.service';
 import { Payload } from '../types/payload';
+import User from 'src/entities/User';
 
 @Injectable()
 export class AuthService {
@@ -12,7 +13,7 @@ export class AuthService {
     return sign(payload, process.env.SECRET_KEY, { expiresIn: '12h' });
   }
 
-  async validateUser(payload: Payload) {
-    return await this.userService.findByPayload(payload);
+  async validateUser(payload: Payload): Promise<User> {
+    return await this.userService.findByUserName(payload.username)
   }
 }

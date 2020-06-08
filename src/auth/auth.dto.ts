@@ -1,4 +1,3 @@
-import { Address } from '../types/user';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class LoginDTO {
@@ -18,9 +17,4 @@ export class RegisterDTO {
   @ApiProperty()
   password: string;
 
-  @ApiProperty()
-  seller?: boolean;
-
-  @ApiProperty()
-  address?: Address;
 }

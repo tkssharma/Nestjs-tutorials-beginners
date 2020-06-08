@@ -4,25 +4,25 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  OneToOne,
 } from 'typeorm';
-import Post from './Post';
+import Comment from './Comment';
 import User from './User';
+import Post from './Post';
 
 @Entity()
-class Comment {
+class Category {
   @PrimaryGeneratedColumn()
   public id: number;
 
   @Column()
   @IsNotEmpty()
-  public text: string;
-
-  @ManyToOne(() => User, user => user.comments, { eager: true, onDelete: 'CASCADE' })
-  public user: User;
-
-  @ManyToOne(() => Post, post => post.comments, { eager: true, onDelete: 'CASCADE' })
+  public category: string;
+ 
+  @OneToOne(() => Post, post => post.category)
   public post: Post;
 
   @Column()
@@ -34,4 +34,4 @@ class Comment {
   public updatedAt: Date;
 }
 
-export default Comment;
+export default Category;

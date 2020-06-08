@@ -1,9 +1,9 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { DatabaseModule } from './database/database.module';
-import UserEntity from './entities/user';
-import PostEntity from './entities/post';
-import CommnentEntity from './entities/comment';
+import UserEntity from './entities/User';
+import PostEntity from './entities/Post';
+import CommnentEntity from './entities/Comment';
 
 import { AppService } from './app.service';
 

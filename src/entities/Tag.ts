@@ -11,7 +11,7 @@ import Post from './Post';
 import User from './User';
 
 @Entity()
-class Comment {
+class Tag {
   @PrimaryGeneratedColumn()
   public id: number;
 
@@ -19,10 +19,7 @@ class Comment {
   @IsNotEmpty()
   public text: string;
 
-  @ManyToOne(() => User, user => user.comments, { eager: true, onDelete: 'CASCADE' })
-  public user: User;
-
-  @ManyToOne(() => Post, post => post.comments, { eager: true, onDelete: 'CASCADE' })
+  @ManyToOne(() => Post, post => post.tags, { eager: true, onDelete: 'CASCADE' })
   public post: Post;
 
   @Column()
@@ -34,4 +31,5 @@ class Comment {
   public updatedAt: Date;
 }
 
-export default Comment;
+
+export default Tag;
