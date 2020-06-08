@@ -1,24 +1,16 @@
 import {Column, CreateDateColumn, Entity, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
 
-@Entity()
-export default class ContactEntity{
+@Entity('Comment')
+export default class CommentEntity{
 
     @PrimaryGeneratedColumn()
     id: number;
 
-    @PrimaryColumn()
     @Column()
-    name: string;
-
-    @PrimaryColumn()
-    @Column({
-        unique: true,
-        nullable: false,
-    })
-    email: string;
+    comment: string;
 
     @Column()
-    phone: string;
+    description: string;
 
     @CreateDateColumn()
     createdAt;
