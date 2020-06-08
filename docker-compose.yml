@@ -7,15 +7,15 @@ services:
         volumes:
             - ./:/usr/src/app
         depends_on:
-            - mongo
-    mongo:
-        image: mongo
-        container_name: global-mongo-service
-        restart: unless-stopped
+            - mysql
+    mysql:
+        image: mysql:5.7
+        environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: test
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
         volumes:
-            - mongo_data:/data/configdb
-            - mongo_data:/data/db
-        ports:
-            - 27017:27017        
+        - mysql-data:/var/lib/mysql                  
 volumes:
-    mongo_data: {}
+    mysql_data: {}
