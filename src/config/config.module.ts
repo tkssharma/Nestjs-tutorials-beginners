@@ -1,19 +1,18 @@
 import { Module } from '@nestjs/common';
-import {dotenv} from 'dotenv';
-import {ConfigService } from './config.service';
+import { ConfigService } from './config.service';
 
 const configFactory = {
-    provide: ConfigService,
-    useFactory : () => {
-        dotenv.config()
-        const config = new ConfigService();
-        config.loadfromDotEnv();
-        return config;
-    }
-}
+  provide: ConfigService,
+  useFactory: () => {
+    const config = new ConfigService();
+    config.lofusingDotEnv();
+    return config;
+  },
+};
 
 @Module({
   imports: [],
+  controllers: [],
   providers: [configFactory],
   exports: [configFactory],
 })
