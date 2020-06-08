@@ -22,16 +22,12 @@ export class DatabaseModule {
         case  'mysql':
           connectionOptions = this.getConnectionOptionsMysql(dbdata);
           break;
-        case  'sqlite':
-          connectionOptions = this.getConnectionOptionsSqlite(dbdata);
-          break;
           default:
             throw new NotImplementedException(`Database type '${dbdata.type}' not supported`);  
       }
     return {
         ...connectionOptions,
         entities: dbconfig.entities,
-        // synchronize: true,
         logging: true,
       }; 
   }

@@ -11,11 +11,11 @@ services:
     mysql:
         image: mysql:5.7
         environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: test
-        MYSQL_USER: root
-        MYSQL_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: test
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
         volumes:
         - mysql-data:/var/lib/mysql                  
 volumes:
-    mysql_data: {}
+    mysql-data: {}

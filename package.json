@@ -36,6 +36,8 @@
     "dotenv": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.16",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
     "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
