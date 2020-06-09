@@ -7,6 +7,7 @@ import { LoginDTO, RegisterDTO } from '../auth/auth.dto';
 import { Payload } from '../types/payload';
 import { Repository } from 'typeorm';
 import User from '../entities/User';
+import { validate } from 'class-validator';
 
 @Injectable()
 export class UserService {
@@ -15,14 +16,19 @@ export class UserService {
   // user register 
   async create(userDTO: RegisterDTO): Promise<User> {
     try {
-    const { username } = userDTO;
+    const { username, password } = userDTO;
     const user = await this.userRepo.findOne({ username });
     if (user) {
       throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
     }
     const newUser = new User();
-    newUser.username = userDTO.username;
-    newUser.password = userDTO.password;
+    newUser.username = username;
+    newUser.password = password;
+    /*const errors = await validate(newUser);
+    if(errors && errors.length > 0){
+      throw new BadRequestException(errors);
+    } */
+    newUser.hashPassword();
     return await this.userRepo.save(newUser);
     }catch(err){
       throw new BadRequestException(err);
@@ -47,7 +53,7 @@ export class UserService {
     if (!user) {
       throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
     }
-    if (await bcrypt.compare(password, user.password)) {
+    if (user.checkIfUnencryptedPasswordIsValid(password)) {
       return this.sanitizeUser(user);
     } else {
       throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);

@@ -23,7 +23,7 @@ export class User {
   @IsNotEmpty()
   public username: string;
 
-  @Column({ select: false })
+  @Column()
   @Length(4, 100)
   @IsNotEmpty()
   public password: string;
