@@ -1,3 +1,6 @@
+## Nest JS Tutorials 
+https://www.youtube.com/watch?v=8d75-sTi4UI&list=PLIGDNOJWiL1_AhUGgmwz7RhyXwX5aVLj4
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
