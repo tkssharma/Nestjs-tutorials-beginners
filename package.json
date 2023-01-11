@@ -42,7 +42,7 @@
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
     "dotenv": "^8.2.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.9.16",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
